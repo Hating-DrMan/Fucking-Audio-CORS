@@ -23,16 +23,26 @@
 	const audioElement = document.getElementById("audio");
 	const audioContext = new AudioContext();
 	const audio = audioContext.createMediaElementSource(audioElement);
-	audio.connect(audioContext.destination);
+	const gainNode = audioContext.createGain();
+	audio.connect(gainNode).connect(audioContext.destination);
+	gainNode.gain.value = 8;
 	addEventListener(
 		"click",
   		() => {
   			console.log(audioContext)
    		 	if (audioContext.state === "suspended") {
     			audioContext.resume();
+    			audioElement.play();
     		}
   		},
   		false
+	);
+	audioElement.addEventListener(
+		"ended",
+		() => {
+			console.log("ok");
+		},
+		false
 	);
 </script>
 </body>
