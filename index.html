@@ -30,17 +30,9 @@
   			console.log(audioContext)
    		 	if (audioContext.state === "suspended") {
     			audioContext.resume();
-    			audioElement.play();
     		}
   		},
   		false
-	);
-	audioElement.addEventListener(
-		"ended",
-		() => {
-			console.log("ok");
-		},
-		false
 	);
 </script>
 </body>
