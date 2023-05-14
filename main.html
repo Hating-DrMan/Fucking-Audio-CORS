@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Test Zone</title>
+	<style>
+	html, body {
+		height: 100%;
+		margin: 0;
+	}
+	canvas {
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+	</style>
+</head>
+<body>
+<canvas id = "canvas"></canvas>
+<audio src = "audio_ak47-shot.mp3" id = "audio"> </audio>
+<script type="text/javascript">
+	const audioElement = document.getElementById("audio");
+	const audioContext = new AudioContext();
+	const audio = audioContext.createMediaElementSource(audioElement);
+	audio.connect(audioContext.destination);
+	addEventListener(
+		"click",
+  		() => {
+  			console.log(audioContext)
+   		 	if (audioContext.state === "suspended") {
+    			audioContext.resume();
+    			audioElement.play();
+    		}
+  		},
+  		false
+	);
+	audioElement.addEventListener(
+		"ended",
+		() => {
+			console.log("ok");
+		},
+		false
+	);
+</script>
+</body>
+</html>
